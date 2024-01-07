@@ -1,0 +1,412 @@
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans);
+
+
+
+:root{
+--dark-background : "images/bg-desktop-dark.jpg";
+--light-background : "images/bg-desktop-light.jpg";
+--header-background: ;
+}
+
+
+
+
+:root {
+    --background :hsl(0, 0%, 98%);
+--task-background: hsl(236, 33%, 92%);
+--checkbox-border: hsl(236, 9%, 61%);
+--task-text-color: hsl(235, 19%, 35%);
+--active-color: hsl(216, 100%, 52%);
+--check-blue: hsl(241, 90%, 68%);
+--check-pink: hsl(274, 94%, 49%);
+
+
+}
+
+*,
+*::before,
+*::after  {
+    font-family : inherit;
+    box-sizing: border-box;
+    font-family:'Josefin Sans';
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: var(--background); 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--checkbox-border); 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+
+
+  
+
+  
+body {
+    margin: 0;
+    font-weight: 300;
+    background-color: var(--task-background);
+    color: var(--background);
+    display: grid;
+    grid:
+    "up up up up up up" auto
+    "..... ......  active  active  ..... ......" auto /
+    1fr 1fr minmax(150px,200px) minmax(150px,200px) 1fr 1fr;
+}
+
+
+.up{
+    display: grid;
+    grid:
+    ". . header mode . ." auto
+    "..... ....... todo-header todo-header ....... ......" auto/
+    1fr 1fr minmax(150px,200px) minmax(150px,200px) 1fr 1fr;
+    grid-area: up;
+    background-image: var(--header-background);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 3rem;
+}
+
+.btn.mode{
+    grid-area: mode;
+    justify-self: flex-end;
+    align-self: center;
+    margin-right: .5rem;
+    color : hsl(0, 0%, 98%);
+  }
+
+.title {
+    grid-area: header;
+    font-size: 2rem;
+    font-weight: 600;
+    color : hsl(0, 0%, 98%);
+    letter-spacing: .5rem;
+    margin-top: 4rem;
+    margin-bottom: 3rem;
+    padding: 0;
+}
+
+.todo-header{
+    grid-area: todo-header;
+    padding: var(--spacer);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    margin-top: -1rem;
+    border-radius: 10px;
+}
+
+
+.todo-list{
+    --spacer:2rem;
+    grid-area: active;
+    min-height: 20rem;
+    max-height: 25rem;
+    background: var(--background);
+    color: var(--task-text-color);
+    margin-top:-3rem;
+    border-radius: 8px;
+}
+
+
+
+.tasks {
+    overflow-y: scroll;
+    max-height: 20rem;
+    padding-top: 1rem;
+    padding-bottom: .5rem;
+
+}
+
+.add-new-form{
+    display: flex;
+    font-size: 1.2rem;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.btn.create{
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1.2rem;
+    margin-right: 0.25em;
+    margin-left: 0.25em;
+    transition: opacity 250ms ease-in;
+    border-radius: 50%;
+    border: 1px solid black;
+    color: var(--task-text-color);
+
+}
+
+.task-wrapper {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    gap: 1 rem;
+}
+.task {
+    width: 100%;
+}
+
+.delete-task {
+    float: right;
+    margin-right : 1rem;
+    border-radius: 50%;
+}
+
+.new-task-creator{
+    width: 100%;
+    background-color: var(--background);
+    border-radius: 8px;
+}
+
+
+
+
+.btn {
+    cursor:pointer;
+    background:0;
+    border:0;
+    padding:0;
+    color: inherit;
+}
+
+.btn.create {
+    border: none;
+}
+.btn.create:hover{
+    opacity: .7;
+}
+
+.new {
+    background: transparent;
+    border : 0;
+    color: var(--task-text-color);
+    border-bottom: 1px solid inherit;
+    font-size: inherit;
+    outline : none;
+
+    transition: border-bottom 75ms ease-in;
+    order: 2;
+    opacity: .8;
+}
+
+.new:focus::placeholder{
+    opacity: 0.4;
+}
+
+.new .task{
+    margin-bottom: 0;
+    font-size: .9rem;
+}
+
+.new .task::placeholder{
+    color: black;
+    opacity: 1;
+}
+
+.active-btn{
+    font-weight: 600;
+    color: var(--active-color);
+}
+
+
+.task-count{
+    font-size: .8rem;
+    margin:0;
+    color: var(--checkbox-border);
+}
+
+.todo-list{
+    padding: 1rem;
+    position: relative;
+    background-color: var(--background);
+}
+
+[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+}
+
+.custom-checkbox {
+    display: inline-block;
+    --size : 1rem;
+    margin-left: 1rem;;
+    width: var(--size);
+    height: var(--size);
+    margin-right: var(--size);
+    border: 2px solid var(--checkbox-border);
+    border-radius: 50%;
+    transform: scale(1);
+    transition: transform 300ms ease-in-out;
+
+}
+
+label:hover .custom-checkbox,
+[type="checkbox"]:focus + label .custom-checkbox {
+    transform: scale(1.2);
+    border-color: var(--check-pink);
+}
+
+[type="checkbox"]:checked + label .custom-checkbox {
+    background: var(--check-blue);
+    border-color: var(--check-blue);
+    box-shadow: inset 0 0 0px 2px white;
+}
+
+[type="checkbox"]:checked + label {
+    text-decoration: line-through;
+    opacity: .5;
+}
+
+
+.task label {
+    min-width: none;
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin-bottom:1.25em;
+    font-size: 1.2rem;
+    color: var(--task-text-color);
+}
+
+
+
+.task-wrapper::after {
+    content: "";
+    position: absolute;
+    height: 1px;
+    background: var(--checkbox-border);
+    bottom: 30%;
+    right: 0;
+    left: 1rem;
+    opacity: .2;
+}
+
+.delete-stuff{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    left: .5rem;
+    right: .5rem;
+    bottom: -1.5em;
+    color: var(--checkbox-border);
+    font-size: .8rem;
+}
+
+
+
+
+.new.task{
+    padding : .25em;
+}
+
+.controller {
+    color: inherit;
+    display: flex;
+    gap : 1.1rem;
+}
+
+.clear {
+    color: inherit;
+}
+
+.btn-footer:hover, .clear:hover{
+    font-weight: 700;
+    color: var(--task-text-color)
+}
+.active-btn:hover{
+    font-weight: 700;
+    color: var(--active-color);
+}
+
+
+
+@media only screen and (max-width: 375px){
+    :root{
+        --dark-background : "images/bg-mobile-dark.jpg";
+        --light-background : "images/bg-mobile-light.jpg";
+        --header-background: ;
+        }
+
+    body {
+        font-size: 4px;
+        margin: 0;
+        font-weight: 300;
+        background-color: var(--task-background);
+        color: var(--background);
+        display: grid;
+        grid:
+        "up up up up" auto
+        " ......  active  active  ..... " auto /
+         1fr minmax(100px,150px) minmax(100px,150px) 1fr ;
+    }
+    
+    
+    .up{
+
+        display: grid;
+        grid:
+        ".  header mode ." auto
+        " ....... todo-header todo-header ......." auto/
+         1fr minmax(100px,150px) minmax(100px,150px) 1fr ;
+        grid-area: up;
+        background-image: var(--header-background);
+        background-repeat: no-repeat;
+        padding-bottom: 3rem;
+    }
+
+    .title {
+        grid-area: header;
+        font-size: 1rem;
+        font-weight: 600;
+        color : hsl(0, 0%, 98%);
+        letter-spacing: .5rem;
+        margin-top: 4rem;
+        margin-bottom: 3rem;
+        padding: 0;
+    }
+
+    .delete-stuff {
+        display: flex;
+        flex-wrap: wrap;
+
+        justify-content: space-evenly;
+        position: absolute;
+        left: .2rem;
+        right: .2rem;
+        bottom: -2.8rem;
+        color: var(--checkbox-border);
+        font-size: .8rem;
+        gap: .8rem;
+    }
+
+    .add-new-form {
+        font-size: .9rem;
+    }
+
+    .task label{
+        font-size: 1rem;
+    }
+    .controller {
+        order : 3;
+    }
+
+  }

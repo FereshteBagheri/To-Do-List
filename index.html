@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="up">
+            <h1 class="title"> TODO</h1>
+            <button class="mode btn" data-mode-btn>Change To Light Mode</button>
+        <div class="todo-header">
+            <div class="new-task-creator">
+                <form class="add-new-form" action="" data-new-task-form>
+                    <input 
+                    type="text" 
+                    class="new task" 
+                    placeholder="new to do" 
+                    aria-label="new to do" data-new-task-input>
+                    <button class="btn create" 
+                    aria-label="Create new task">+</button>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="todo-list todo-body" >
+            <div class="tasks" data-tasks>
+                
+            </div>
+        <div class="delete-stuff">
+            <div>
+                <p class="task-count" data-tasks-count>3 tasks remaining</p>
+            </div>
+            <div class="controller" data-controller>
+                <button class="btn footer control">All</button>
+                <button class="btn footer control">Active</button>
+                <button class="btn-footer control">Completed</button>
+            </div>
+            
+            <div class="clear">
+                <button class=" btn footer delete" onclick="deleteCompleted()">Clear Completed</button>
+                
+            </div>
+            
+
+    </div>
+</div>
+
+
+    
+
+
+
+<template id="task-template">
+        <div class="task-wrapper">
+            <div class="task"> 
+                <input type="checkbox">
+                <label>
+                    <span class="custom-checkbox">
+                        
+                    </span>
+                </label>
+            </div>
+            <img class="delete-task"  src="images/icon-cross.svg" />
+        </div>
+
+    </template>
+    <script src="script.js"></script>
+</body>
+</html>
