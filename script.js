@@ -14,28 +14,23 @@ const modeIcon = document.getElementById('modeIcon');
 const LOCAL_STORAGE_LIGHT = 'task.lightflag';
 
 let lmt = localStorage.getItem(LOCAL_STORAGE_LIGHT);
-let lightMode = (lmt === "true") ? true : (lmt === "false") ? false : true; // Default to true if not found
+let lightMode = (lmt === "true") ? true : (lmt === "false") ? false : true;
+
 const controllerButtons = [
     { name: "All", id: "all-btn" },
     { name: "Active", id: "active-btn" },
     { name: "Completed", id: "completed-btn" }
 ];
-let selectedControlBtn = localStorage.getItem(LOCAL_STORAGE_SELECTED_CONTROL_BTN);
-selectedControlBtn = selectedControlBtn || 'all-btn'; // Default to 'all-btn' if not found
 
+let selectedControlBtn = localStorage.getItem(LOCAL_STORAGE_SELECTED_CONTROL_BTN);
+selectedControlBtn = selectedControlBtn || 'all-btn';
 let tasks = JSON.parse(localStorage.getItem(LOCAL_STRORAGE_TASKS)) || [];
 
-
-
-
- 
 function save(){
     localStorage.setItem(LOCAL_STRORAGE_TASKS,JSON.stringify(tasks));
     localStorage.setItem(LOCAL_STORAGE_SELECTED_CONTROL_BTN,selectedControlBtn);
     localStorage.setItem(LOCAL_STORAGE_LIGHT,lightMode);
 }
-
-
 
 //control
 
@@ -96,7 +91,6 @@ function createTask(taskName){
     }
     return newTask
 }
-
 
 //view
 
