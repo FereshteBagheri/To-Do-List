@@ -82,6 +82,8 @@ body {
     padding-bottom: 3rem;
 }
 
+
+
 .btn.mode{
     grid-area: mode;
     justify-self: flex-end;

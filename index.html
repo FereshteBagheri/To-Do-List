@@ -6,11 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My To Do List</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 </head>
 <body>
     <div class="up">
             <h1 class="title"> TODO</h1>
-            <button class="mode btn" data-mode-btn>Change To Light Mode</button>
+            <button id="modeBtn" class="mode btn" data-mode-btn>
+                <i id= "modeIcon" class="material-icons">brightness_6</i>
+              </button>
         <div class="todo-header">
             <div class="new-task-creator">
                 <form class="add-new-form" action="" data-new-task-form>

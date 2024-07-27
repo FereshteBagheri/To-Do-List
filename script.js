@@ -10,25 +10,23 @@ const taskCountElement = document.querySelector('[data-tasks-count]')
 const tasksElement = document.querySelector('[data-tasks]');
 const r = document.querySelector(":root");
 const modeBtn = document.querySelector('[data-mode-btn]');
+const modeIcon = document.getElementById('modeIcon');
 const LOCAL_STORAGE_LIGHT = 'task.lightflag';
+
 let lmt = localStorage.getItem(LOCAL_STORAGE_LIGHT);
-let selectedControlBtn = localStorage.getItem(LOCAL_STORAGE_SELECTED_CONTROL_BTN);
+let lightMode = (lmt === "true") ? true : (lmt === "false") ? false : true; // Default to true if not found
 const controllerButtons = [
-    {name : "All",
-     id: "all-btn"},
-    {name : "Active",
-     id : "active-btn"},
-    {name : "Completed",
-     id : "completed-btn"}];
+    { name: "All", id: "all-btn" },
+    { name: "Active", id: "active-btn" },
+    { name: "Completed", id: "completed-btn" }
+];
+let selectedControlBtn = localStorage.getItem(LOCAL_STORAGE_SELECTED_CONTROL_BTN);
+selectedControlBtn = selectedControlBtn || 'all-btn'; // Default to 'all-btn' if not found
+
 let tasks = JSON.parse(localStorage.getItem(LOCAL_STRORAGE_TASKS)) || [];
 
 
- let lightMode;
- if(lmt==="true"){
-     lightMode = true;
- }else if(lmt==="false"){
-     lightMode=false;
- }
+
 
  
 function save(){
@@ -150,6 +148,7 @@ function saveAndRender(){
 }
 
 function renderController (){
+    console.log(selectedControlBtn);
     clearElement(controller);
     controllerButtons.forEach(item => {
         const btn = document.createElement("button");
@@ -177,7 +176,8 @@ function renderMode(){
         r.style.setProperty('--check-pink', 'hsl(274, 94%, 49%)');
         let t = getComputedStyle(r).getPropertyValue('--light-background')
         r.style.setProperty('--header-background', `url(${t})`);
-        modeBtn.innerText ="Change To Dark Mode";
+        modeIcon.textContent = 'brightness_4';
+       
     }else{
         r.style.setProperty('--background', 'hsl(235, 24%, 19%)');
         r.style.setProperty('--task-background', 'hsl(235, 21%, 11%)');
@@ -188,7 +188,8 @@ function renderMode(){
         r.style.setProperty('--check-pink', 'hsl(234, 11%, 52%)');
         let t = getComputedStyle(r).getPropertyValue('--dark-background')
         r.style.setProperty('--header-background', `url(${t})`);
-        modeBtn.innerText ="Change To Light Mode";
+        modeIcon.textContent = 'brightness_6';
+       
     }
  }
 
